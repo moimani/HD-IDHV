@@ -11,6 +11,7 @@ main.py also contains comments to help desribe how to use your own dataset with 
 Please let us know if you face any problems or discover any bugs.
 
 If you utilize this software, please cite our paper:
+
 M. Imani, D. Kong, A. Rahimi, T. Rosing, “VoiceHD: Hyperdimensional Computing for Efficient Speech Recognition",
 IEEE International Conference on Rebooting Computing (ICRC), 2017 [PDF](http://moimani.weebly.com/uploads/2/3/8/6/23860882/icrc17_voicehd.pdf).
 
