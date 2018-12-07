@@ -15,8 +15,6 @@ If you utilize this software, please cite our paper:
 M. Imani, D. Kong, A. Rahimi, T. Rosing, “VoiceHD: Hyperdimensional Computing for Efficient Speech Recognition",
 IEEE International Conference on Rebooting Computing (ICRC), 2017 [PDF](http://moimani.weebly.com/uploads/2/3/8/6/23860882/icrc17_voicehd.pdf).
 
-Thanks!
-
 Mohsen Imani email: moimani@eng.ucsd.edu
 
 Thanks for using out tool to run hyperdimensional computing!
