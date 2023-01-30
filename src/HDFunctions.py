@@ -56,29 +56,31 @@ class HDModel(object):
     #   dataset: name of the dataset
     #Outputs:
     #   none
-    def buildBufferHVs(self, mode, D, dataset):
+    def buildBufferHVs(self, mode, D, nLevels, dataset):
+        d = 'd'+str(D)
+        l = 'l'+str(nLevels)
         if mode == "train":
-            if os.path.exists('./../dataset/' + dataset + '/train_bufferHVs_' + str(D) +'.pkl'):
+            if os.path.exists('./../dataset/' + dataset + '/train_bufferHVs_' + d + l +'.pkl'):
                 print("Loading Encoded Training Data")
-                with open('./../dataset/' + dataset + '/train_bufferHVs_' + str(D) + '.pkl', 'rb') as f:
+                with open('./../dataset/' + dataset + '/train_bufferHVs_' + d + l + '.pkl', 'rb') as f:
                     self.trainHVs = pickle.load(f)
             else:       
                 print("Encoding Training Data")
                 for index in range(len(self.trainData)):
                     self.trainHVs.append(IDMultHV(np.array(self.trainData[index]), self.D, self.levelHVs, self.levelList, self.IDHVs))
-                with open('./../dataset/' + dataset + '/train_bufferHVs_' + str(D) + '.pkl', 'wb') as f:
+                with open('./../dataset/' + dataset + '/train_bufferHVs_' + d + l + '.pkl', 'wb') as f:
                     pickle.dump(self.trainHVs, f)
             self.classHVs = oneHvPerClass(self.trainLabels, self.trainHVs, self.D)
         else:
-            if os.path.exists('./../dataset/' + dataset + '/test_bufferHVs_' + str(D) +'.pkl'):
+            if os.path.exists('./../dataset/' + dataset + '/test_bufferHVs_' + d + l +'.pkl'):
                 print("Loading Encoded Testing Data")
-                with open('./../dataset/' + dataset + '/test_bufferHVs_' + str(D) +'.pkl', 'rb') as f:
+                with open('./../dataset/' + dataset + '/test_bufferHVs_' + d + l +'.pkl', 'rb') as f:
                     self.testHVs = pickle.load(f)
             else:
                 print("Encoding Testing Data")       
                 for index in range(len(self.testData)):
                     self.testHVs.append(IDMultHV(np.array(self.testData[index]), self.D, self.levelHVs, self.levelList, self.IDHVs))
-                with open('./../dataset/' + dataset + '/test_bufferHVs_' + str(D) +'.pkl', 'wb') as f:
+                with open('./../dataset/' + dataset + '/test_bufferHVs_' + d + l +'.pkl', 'wb') as f:
                     pickle.dump(self.testHVs, f)
 
 #Performs the initial training of the HD model by adding up all the training
@@ -303,7 +305,7 @@ def trainNTimes (classHVs, trainHVs, trainLabels, testHVs, testLabels, n):
 #   model: HDModel object containing the encoded data, labels, and class HVs
 def buildHDModel(trainData, trainLabels, testData, testLables, D, nLevels, datasetName):
     model = HDModel(trainData, trainLabels, testData, testLables, D, nLevels)
-    model.buildBufferHVs("train", D, datasetName)
-    model.buildBufferHVs("test", D, datasetName)
+    model.buildBufferHVs("train", D, nLevels, datasetName)
+    model.buildBufferHVs("test", D, nLevels, datasetName)
     return model
 
